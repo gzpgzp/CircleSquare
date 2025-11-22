@@ -1,0 +1,17 @@
+Library/
+Temp/
+obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+ProjectSettings/
+.idea/
+
+.vs/
+*.csproj
+*.sln
+*.user
+*.userprefs
+
+
