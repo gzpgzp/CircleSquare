@@ -8,8 +8,7 @@ namespace Tools.ResourcesTool
     {
         public void Init()
         {
-        
-        
+            
         }
 
         public T Load<T>(string objName) where T : Object

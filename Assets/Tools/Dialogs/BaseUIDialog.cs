@@ -24,6 +24,11 @@ namespace Tools.Dialogs
             
         }
 
+        public void CloseDialog()
+        {
+            CloseDialogEvent.Trigger(context.dialogName);
+        }
+
         public void SetVisible(bool isVisible)
         {
             gameObject.SetActive(isVisible);   

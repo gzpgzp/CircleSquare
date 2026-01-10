@@ -6,7 +6,7 @@ namespace Tools.Dialogs
 {
     public class DialogCreator
     {
-        private const string DialogPrePath = "";
+        private const string DialogPrePath = "Prefabs/Dialogs/";
 
         public BaseUIDialog<BaseUIDialogContext> CreateDialog(string dialogName)
         {

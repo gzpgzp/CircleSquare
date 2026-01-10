@@ -13,8 +13,14 @@ namespace Battle
         public int damage = 1;               // 伤害（先留着，后面接敌人系统）
 
         public LayerMask hitLayers;          // 爆炸影响哪些层（Player/Enemy/Objects等）
+        [SerializeField] private GameObject explodePrefab;
 
         private float timer;
+
+        public void Init()
+        {
+            
+        }
 
         void Update()
         {
@@ -27,6 +33,11 @@ namespace Battle
 
         void OnCollisionEnter2D(Collision2D collision)
         {
+            if (collision.gameObject.tag == "Player")
+            {
+                return;
+            }
+
             // 一旦碰到任何碰撞体就爆炸，你也可以根据 Tag 细分
             Explode();
         }
@@ -52,7 +63,8 @@ namespace Battle
                 //     hp.TakeDamage(damage);
                 // }
             }
-
+            
+            Instantiate(explodePrefab, transform.position, Quaternion.identity);
             // 3. TODO：这里可以播放爆炸特效/音效
             // Instantiate(explosionVfxPrefab, transform.position, Quaternion.identity);
 
