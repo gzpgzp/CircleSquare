@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Battle.Character;
 
@@ -6,18 +7,18 @@ namespace Battle.AI
     public enum StateEnum
     {
         Idle,
+        Patrol,
+        Attack
     }
 
     public class StateMachine
     {
-        private BaseCharacter character;
         private BaseState curState;
         private Dictionary<StateEnum, BaseState> states = new Dictionary<StateEnum, BaseState>();
 
-        public void Init(BaseCharacter character)
+        public void AddState(BaseState state)
         {
-            this.character = character;
-            states.Add(StateEnum.Idle,new IdleState(character));
+            states.Add(state.Id, state);
         }
 
         public void Update(float deltaTime)
@@ -27,8 +28,10 @@ namespace Battle.AI
 
         public void ChangeState(StateEnum state)
         {
+            if (!states.TryGetValue(state, out var nextState))
+                return;
             curState?.Exit();
-            curState = states[state];
+            curState = nextState;
             curState?.Enter();
         }
     }

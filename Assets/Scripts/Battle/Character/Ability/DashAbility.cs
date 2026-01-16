@@ -1,8 +1,10 @@
 using System.Collections;
+using Inputs;
 using UnityEngine;
 
 namespace Battle.Character.Ability
 {
+    [Ability(AbilityEnum.Dash)]
     public class DashAbility : BaseAbility
     {
         [Header("基础设置")] public Rigidbody2D rb;
@@ -16,9 +18,14 @@ namespace Battle.Character.Ability
         private bool isDashing = false;
         private float dashTimer = 0f;
 
-        public override void Init(BaseCharacter character)
+        public DashAbility(BaseCharacter character) : base(character)
         {
-            base.Init(character);
+            
+        }
+
+        public override void Init(CharacterContext context, AbilitySystem system, InputManager input)
+        {
+            base.Init(context, system, input);
             rb = character.GetComponent<Rigidbody2D>();
         }
         
