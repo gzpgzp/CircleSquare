@@ -4,12 +4,14 @@ namespace Tools.Dialogs
 {
     public class DialogPipe
     {
-        private Stack<BaseUIDialog<BaseUIDialogContext>> dialogsStack = new Stack<BaseUIDialog<BaseUIDialogContext>>();
+        private Stack<BaseUIDialog> dialogsStack = new Stack<BaseUIDialog>();
 
-        public void OnDialogShow(BaseUIDialog<BaseUIDialogContext> dialog)
+        public void OnDialogShow(BaseUIDialog dialog)
         {
-            var peekDialog = dialogsStack.Peek();
-            peekDialog.SetVisible(false);
+            if (dialogsStack.Count > 0)
+            {
+                dialogsStack.Peek().SetVisible(false);
+            }
             
             dialogsStack.Push(dialog);
         }
@@ -20,9 +22,12 @@ namespace Tools.Dialogs
 
             if (dialogsStack.Peek().DialogName != dialogName) return;
 
-            dialogsStack.Pop();
-            var peekDialog = dialogsStack.Peek();
-            peekDialog.SetVisible(true);
+            var dialog = dialogsStack.Pop();
+
+            if (dialogsStack.Count > 0)
+            {
+                dialogsStack.Peek().SetVisible(true);
+            }
         }
     }
 }

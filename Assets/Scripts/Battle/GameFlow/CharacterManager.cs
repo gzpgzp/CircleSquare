@@ -4,5 +4,6 @@ namespace Battle.GameFlow
 {
     public class CharacterManager
     {
+        
     }
 }

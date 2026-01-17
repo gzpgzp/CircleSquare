@@ -1,4 +1,5 @@
 using System;
+using Cameras;
 using Unity.Collections;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace Tools.Dialogs
         {
             if (renderCamera == null)
             {
-                renderCamera = Camera.main;
+                renderCamera = CameraManager.Instance.GetCamera(MyCameraType.UI);
             }
         }
     }

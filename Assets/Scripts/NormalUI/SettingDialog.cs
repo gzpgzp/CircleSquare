@@ -1,4 +1,5 @@
-using System;
+using GameFramework;
+using Sounds;
 using Tools.Dialogs;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,23 +13,37 @@ namespace NormalUI
 
     public class SettingDialog : BaseUIDialog<SettingDialogContext>
     {
-        [SerializeField] private Button quitButton;
-        [SerializeField] private Button cancelButton;
+        [SerializeField] private Button closeBtn;
+        [SerializeField] private Button menuBtn;
+        [SerializeField] private SoundItem bgmVolumeSlider;
+        [SerializeField] private SoundItem musicVolumeSlider;
 
         private void Start()
         {
-            quitButton.onClick.AddListener(OnQuitButtonClick);
-            cancelButton.onClick.AddListener(OnCancelButtonClick);
+            closeBtn.onClick.AddListener(OnCloseButtonClick);
+            menuBtn.onClick.AddListener(OnMenuButtonClick);
         }
 
-        private void OnQuitButtonClick()
+        private void OnDestroy()
         {
-            CloseDialog();   
+            closeBtn.onClick.RemoveAllListeners();
+            menuBtn.onClick.RemoveAllListeners();
         }
 
-        private void OnCancelButtonClick()
+        private void OnCloseButtonClick()
         {
-            CloseDialog();
+            Close();
+        }
+
+        private void OnMenuButtonClick()
+        {
+            Close();
+            GameStopEvent.Trigger();
+        }
+
+        protected override void OnShowTyped(SettingDialogContext context)
+        {
+            
         }
     }
 }

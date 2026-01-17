@@ -1,18 +1,22 @@
 using System.Text;
 using Tools.ResourcesTool;
 using Unity.VisualScripting;
+using UnityEngine;
 
 namespace Tools.Dialogs
 {
-    public class DialogCreator
+    public static class DialogCreator
     {
-        private const string DialogPrePath = "Prefabs/Dialogs/";
+        private const string DialogPrePath = "Prefabs/UI/Dialogs/";
 
-        public BaseUIDialog<BaseUIDialogContext> CreateDialog(string dialogName)
+        public static BaseUIDialog CreateDialog(string dialogName, Transform transform)
         {
             var sb = new StringBuilder(DialogPrePath);
             sb.Append(dialogName);
-            MyResourcesManager.Instance.LoadAndInstantiate(sb.ToString()).TryGetComponent<BaseUIDialog<BaseUIDialogContext>>(out var dialog);
+            
+            var go = MyResourcesManager.Instance.LoadAndInstantiate(sb.ToString(),transform);
+            
+            go.TryGetComponent<BaseUIDialog>(out var dialog);
             return dialog;
         }
     }

@@ -8,20 +8,27 @@ namespace Tools.Dialogs
         private Transform dialogParent;
         
         private DialogPipe dialogPipe;
-        private DialogCreator dialogCreator;
 
         public void Init(Transform dialogParent)
         {
             this.dialogParent = dialogParent;
             dialogPipe = new DialogPipe();
+            this.MMEventStartListening<OpenDialogEvent>();
+            this.MMEventStartListening<CloseDialogEvent>();
+        }
+
+        public void Destroy()
+        {
+            this.MMEventStopListening<OpenDialogEvent>();
+            this.MMEventStopListening<CloseDialogEvent>();
         }
 
         private void OpenDialog(string dialogName, BaseUIDialogContext ctx)
         {
-            var dialog = dialogCreator.CreateDialog(dialogName);
+            var dialog = DialogCreator.CreateDialog(dialogName,dialogParent);
             if (dialog != null)
             {
-                dialog.OnShow(ctx);
+                dialog.Show(ctx);
                 dialogPipe.OnDialogShow(dialog);
             }
         }

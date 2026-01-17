@@ -2,41 +2,63 @@ using UnityEngine;
 
 namespace Tools.Dialogs
 {
+
     public class BaseUIDialogContext
     {
         public string dialogName;
     }
 
-    public class BaseUIDialog<T> : MonoBehaviour where T : BaseUIDialogContext
+    public abstract class BaseUIDialog: MonoBehaviour
     {
-        private T context;
+        protected BaseUIDialogContext context;
         
         // 主动展示
-        public void OnShow(T ctx)
+        public void Show(BaseUIDialogContext ctx)
         {
             ctx.dialogName = gameObject.name;
             context = ctx;
+            OnShow(ctx);
         }
 
-        // 主动关闭
-        public void OnClose()
+        public void Close()
+        {
+            CloseDialogEvent.Trigger(context.dialogName);
+            OnClose();
+        }
+        
+        public void SetVisible(bool isVisible)
+        {
+            gameObject.SetActive(isVisible);   
+        }
+
+        protected virtual void OnShow(BaseUIDialogContext ctx)
         {
             
         }
 
-        public void CloseDialog()
+        protected virtual void OnClose()
         {
-            CloseDialogEvent.Trigger(context.dialogName);
-        }
-
-        public void SetVisible(bool isVisible)
-        {
-            gameObject.SetActive(isVisible);   
+            Destroy(gameObject);
         }
 
         public string DialogName
         {
             get { return context.dialogName; }
         }
+    }
+    
+    // 泛型
+    public abstract class BaseUIDialog<T> : BaseUIDialog
+        where T : BaseUIDialogContext
+    {
+        protected T TypedContext;
+
+        protected override void OnShow(BaseUIDialogContext ctx)
+        {
+            TypedContext = (T)ctx;
+            OnShowTyped(TypedContext);
+        }
+
+        protected abstract void OnShowTyped(T context);
     }
 }
