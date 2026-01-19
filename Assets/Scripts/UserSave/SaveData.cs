@@ -1,17 +1,12 @@
 using System;
+using Battle;
 
 namespace UserSave
 {
     [Serializable]
-    public class PlayerContext
-    {
-        public string name;
-        public string id;
-    }
-    
-    [Serializable]
     public class SaveData
     {
         public PlayerContext playerContext;
+        public int saveId; // todo
     }
 }

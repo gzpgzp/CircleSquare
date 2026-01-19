@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Tools.Singletons;
 
-namespace Inputs
+namespace Battle.Inputs
 {
     public class InputManager : Singleton<InputManager>
     {

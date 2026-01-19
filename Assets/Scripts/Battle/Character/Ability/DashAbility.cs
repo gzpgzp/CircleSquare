@@ -1,5 +1,5 @@
 using System.Collections;
-using Inputs;
+using Battle.Inputs;
 using UnityEngine;
 
 namespace Battle.Character.Ability
@@ -23,9 +23,9 @@ namespace Battle.Character.Ability
             
         }
 
-        public override void Init(CharacterContext context, AbilitySystem system, InputManager input)
+        public override void Init(CharacterContext context, AbilitySystem system)
         {
-            base.Init(context, system, input);
+            base.Init(context, system);
             rb = character.GetComponent<Rigidbody2D>();
         }
         

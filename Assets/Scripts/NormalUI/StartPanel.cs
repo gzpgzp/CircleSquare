@@ -3,6 +3,7 @@ using Define;
 using GameFramework;
 using UnityEngine;
 using UnityEngine.UI;
+using UserSave;
 
 namespace NormalUI
 {
@@ -17,6 +18,11 @@ namespace NormalUI
             startButton.onClick.AddListener(OnStartButtonClicked);
             continueButton.onClick.AddListener(OnContinueButtonClicked);
             quitButton.onClick.AddListener(OnQuitButtonClicked);
+
+            if (!SaveManager.Instance.HasSave())
+            {
+                continueButton.interactable = false;
+            }
         }
 
         private void OnStartButtonClicked()

@@ -12,7 +12,8 @@ namespace Battle.Character
     {
         private static Dictionary<AbilityEnum, Type> types;
 
-        public static void Init()
+        // 
+        public static void Initializer()
         {
             types = Assembly.GetExecutingAssembly()
                 .GetTypes()
@@ -26,7 +27,12 @@ namespace Battle.Character
                 .ToDictionary(x => x.Attr.Id, x => x.Type);
         }
 
-        public static BaseAbility Create(AbilityEnum abilityEnum)
+        public static BaseAbility CreateAbility(int abilityId)
+        {
+            return null;
+        }
+
+        public static BaseAbility CreateAbility(AbilityEnum abilityEnum)
         {
             if (!types.TryGetValue(abilityEnum, out var type))
                 throw new Exception($"Ability {abilityEnum} not registered!");

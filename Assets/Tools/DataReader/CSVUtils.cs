@@ -43,12 +43,12 @@ namespace Tools.DataReader
 
                     if (field != null)
                     {
-                        object convertedValue = Convert.ChangeType(value, field.FieldType);
+                        object convertedValue = ConvertToType(value, field.FieldType);
                         field.SetValue(obj, convertedValue);
                     }
                     else if (property != null && property.CanWrite)
                     {
-                        object convertedValue = Convert.ChangeType(value, property.PropertyType);
+                        object convertedValue = ConvertToType(value, property.PropertyType);
                         property.SetValue(obj, convertedValue);
                     }
                 }
@@ -57,6 +57,18 @@ namespace Tools.DataReader
             }
 
             return result;
+        }
+
+        private static object ConvertToType(string value, Type targetType)
+        {
+            if (targetType.IsEnum)  // 如果目标类型是枚举类型
+            {
+                // 尝试将字符串转换为对应的枚举值
+                return Enum.Parse(targetType, value);
+            }
+
+            // 对于其他类型，继续使用 Convert.ChangeType
+            return Convert.ChangeType(value, targetType);
         }
     }
 }

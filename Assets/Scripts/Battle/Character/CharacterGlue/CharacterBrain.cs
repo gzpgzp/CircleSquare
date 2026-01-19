@@ -1,4 +1,4 @@
-using Inputs;
+using Battle.Inputs;
 
 namespace Battle.Character.CharacterGlue
 {

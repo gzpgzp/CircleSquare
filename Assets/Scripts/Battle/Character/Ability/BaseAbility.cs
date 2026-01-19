@@ -1,5 +1,5 @@
 using System;
-using Inputs;
+using Battle.Inputs;
 using Unity.VisualScripting;
 
 namespace Battle.Character.Ability
@@ -20,7 +20,8 @@ namespace Battle.Character.Ability
         protected BaseCharacter character;
         protected CharacterContext context;
         protected AbilitySystem system;
-        protected InputManager input;
+
+        protected InputSlot inputSlot;
 
         public int priority { get; protected set; }
         protected bool isEnabled;
@@ -40,11 +41,10 @@ namespace Battle.Character.Ability
             this.character = character;
         }
 
-        public virtual void Init(CharacterContext context, AbilitySystem system, InputManager input)
+        public virtual void Init(CharacterContext context, AbilitySystem system)
         {
             this.context = context;
             this.system = system;
-            this.input = input;
         }
 
         protected virtual void OnUpdate(float deltaTime)

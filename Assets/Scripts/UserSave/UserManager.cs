@@ -1,4 +1,5 @@
 using System;
+using Battle;
 using Tools.Singletons;
 
 namespace UserSave
@@ -9,7 +10,7 @@ namespace UserSave
 
         public void Init()
         {
-            playerContext = SaveManager.Instance.GetPlayerData();
+            // playerContext = SaveManager.Instance.GetPlayerData();
         }
 
         public void ChangePlayerName(string name)

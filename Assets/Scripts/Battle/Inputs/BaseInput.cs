@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Inputs
+namespace Battle.Inputs
 {
     public enum InputType
     {
