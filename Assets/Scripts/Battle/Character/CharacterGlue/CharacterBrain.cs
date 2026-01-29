@@ -1,18 +1,18 @@
+using Battle.Character.Ability;
 using Battle.Inputs;
 
 namespace Battle.Character.CharacterGlue
 {
+    // 主要控制角色的行为，所以是input的控制方
     public abstract class CharacterBrain
     {
         protected BaseCharacter character;
-        protected InputManager input;
 
-        public virtual void Init(BaseCharacter character, InputManager input)
+        public virtual void Init(BaseCharacter character)
         {
             this.character = character;
-            this.input = input;
         }
 
-        public abstract void OnUpdate(float dt);
+        public abstract void Tick(float dt);
     }
 }

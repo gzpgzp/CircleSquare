@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tools.GameObjectPools
 {
-    public class GameObjectPool : Singleton<GameObjectPool>
+    public class GameObjectPool : Singleton<GameObjectPool> 
     {
         public void Load(string objectPath)
         {

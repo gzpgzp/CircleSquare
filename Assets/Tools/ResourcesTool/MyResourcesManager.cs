@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Tools.Singletons;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -9,6 +10,11 @@ namespace Tools.ResourcesTool
         public void Init()
         {
             
+        }
+
+        public T[] LoadAll<T>(string stringPath) where T : Object
+        {
+            return Resources.LoadAll<T>(stringPath);
         }
 
         public T Load<T>(string objName) where T : Object

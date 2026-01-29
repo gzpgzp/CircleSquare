@@ -48,7 +48,10 @@ namespace NormalUI
 
         private void OnGameStart(bool isNewGame)
         {
-            GameStartEvent.Trigger(isNewGame);
+            GameStartEvent.Trigger(new GameContext()
+            {
+                isNewGame = isNewGame
+            });
         }
     }
 }

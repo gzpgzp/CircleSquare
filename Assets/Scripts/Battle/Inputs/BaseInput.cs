@@ -1,32 +1,10 @@
-using System;
-using UnityEngine;
-
 namespace Battle.Inputs
 {
-    public enum InputType
+    public abstract class BaseInput
     {
-        None,
-        Key,
-    }
+        public virtual float Horizontal { get; }
+        public virtual float Vertical { get;  }
 
-    public class BaseInput : MonoBehaviour
-    {
-        protected InputType inputType;
-        private Action inputAction;
-        
-        public InputType InputType
-        {
-            get => inputType;
-        }
-
-        public void InitAction(Action inputAction)
-        {
-            this.inputAction = inputAction;
-        }
-
-        protected void OnTrigger()
-        {
-            inputAction?.Invoke();
-        }
+        public abstract void Update(float deltaTime);
     }
 }

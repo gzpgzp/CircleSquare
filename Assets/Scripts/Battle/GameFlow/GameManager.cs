@@ -1,22 +1,18 @@
+using GameFramework;
 using NormalUI;
+using Tools.Singletons;
 using UserSave;
 
 namespace Battle.GameFlow
 {
     // 每个游戏自己的GameManager
-    public class GameManager
+    public class GameManager : Singleton<GameManager>
     {
-        private CharacterManager characterManager;
-        private LevelManager levelManager;
+        public CharacterManager characterManager;
+        public LevelManager levelManager;
         
-        public void GameStart(bool isNewGame)
+        public void GameStart(GameContext ctx)
         {
-            if (isNewGame)
-            {
-                SaveManager.Instance.Delete();
-            }
-            var playerContext = SaveManager.Instance.GetPlayerData();
-            
             UIManager.Instance.ShowGameTopPanel();
             
             InitManager();
@@ -40,7 +36,17 @@ namespace Battle.GameFlow
         {
             // 创建关卡
             levelManager.CreateLevel();
-            characterManager.CreateCharacterObj();
+        }
+
+        public void Tick(float dt)
+        {
+            characterManager.Tick(dt);
+            levelManager.Tick(dt);
+        }
+
+        public void FixedUpdate(float dt)
+        {
+            characterManager.FixedUpdate(dt);
         }
     }
 }

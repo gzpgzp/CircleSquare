@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "4554e279ae43277841948a98c97ed398a987fce3"
     },
+    "com.code-philosophy.luban": {
+      "version": "git@github.com:focus-creative-games/luban_unity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d870def77ce13ea942786a6f9e6e55112b46c331"
+    },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,

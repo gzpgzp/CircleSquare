@@ -1,0 +1,18 @@
+[
+  {
+    "id": 10,
+    "AbilityEnum": "HorizontalMove2D"
+  },
+  {
+    "id": 20,
+    "AbilityEnum": "Dash"
+  },
+  {
+    "id": 30,
+    "AbilityEnum": "Hurt"
+  },
+  {
+    "id": 40,
+    "AbilityEnum": "Jump"
+  }
+]

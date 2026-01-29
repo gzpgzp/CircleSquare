@@ -6,23 +6,24 @@ using Tools.Dialogs;
 using Tools.EventTool;
 using Tools.ResourcesTool;
 using UnityEngine;
+using UserSave;
 
 namespace GameFramework
 {
     public struct GameStartEvent
     {
-        public bool isNewGame;
+        public GameContext ctx;
         
-        public GameStartEvent(bool isNewGame)
+        public GameStartEvent(GameContext ctx)
         {
-            this.isNewGame = isNewGame;
+            this.ctx = ctx;
         }
 
         static GameStartEvent e;
 
-        public static void Trigger(bool isNewGame)
+        public static void Trigger(GameContext ctx)
         {
-            e.isNewGame = isNewGame;
+            e.ctx = ctx;
             MMEventManager.TriggerEvent(e);
         }
     }
@@ -39,7 +40,7 @@ namespace GameFramework
 
     public class GameFrameWork : MMEventListener<GameStartEvent>, MMEventListener<GameStopEvent>
     {
-        private GameManager gameManager;
+        private GameWorld gameWorld;
         
         public void StartUp()
         {
@@ -67,21 +68,26 @@ namespace GameFramework
             UIManager.Instance.ShowStartPanel();
         }
 
-        private void OnGameStart(bool isNewGame)
-        {
-            gameManager = new GameManager();
-            gameManager.GameStart(isNewGame);
+        private void OnGameStart(GameContext ctx)
+        {            
+            if (ctx.isNewGame)
+            {
+                SaveManager.Instance.Delete();
+            }
+            var playerContext = SaveManager.Instance.GetPlayerData();
+            gameWorld = MyResourcesManager.Instance.LoadAndInstantiate("Prefabs/GameWorld").GetComponent<GameWorld>();
+            gameWorld.Init(ctx);
         }
 
         public void OnMMEvent(GameStartEvent e)
         {
-            OnGameStart(e.isNewGame);
+            OnGameStart(e.ctx);
         }
 
         // 返回主菜单
         public void OnMMEvent(GameStopEvent eventType)
         {
-            gameManager.StopGame();
+            gameWorld.StopGame();
             MySceneManager.Instance.LoadScene(GameScene.MainMenu,InitGameStartScene);
         }
     }

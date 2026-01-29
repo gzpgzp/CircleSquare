@@ -6,6 +6,6 @@ namespace Battle.Character.Ability
         HorizontalMove2D = 10,
         Dash = 20,
         Hurt = 30,
-        
+        Jump = 40,
     }
 }

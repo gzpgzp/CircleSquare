@@ -1,6 +1,6 @@
 namespace Battle.Character.CharacterMotor
 {
-    public class CharacterMotor
+    public class CharacterMotor : BaseCharacterMotor
     {
         
     }

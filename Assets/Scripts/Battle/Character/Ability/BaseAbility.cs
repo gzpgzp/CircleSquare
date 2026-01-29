@@ -17,37 +17,45 @@ namespace Battle.Character.Ability
 
     public abstract class BaseAbility
     {
-        protected BaseCharacter character;
-        protected CharacterContext context;
+        protected BaseCharacter owner;
         protected AbilitySystem system;
-
-        protected InputSlot inputSlot;
+        protected InputActionSO input;
+        protected AbilityContext ctx;
 
         public int priority { get; protected set; }
         protected bool isEnabled;
 
         public AbilityTag OwnTag { get; protected set; }
-
         public AbilityTag BlockTags { get; protected set; }
-
+        
+        protected float abilityTimer = 0f;
+        protected float coolDown = 0f;
+        
         public bool IsEnabled
         {
             get => isEnabled;
         }
-
-        public BaseAbility(BaseCharacter character)
+        
+        public virtual void InitContext(AbilityContext ctx)
         {
-            // 初始化数据和脚本类
-            this.character = character;
+            this.ctx = ctx;
         }
 
-        public virtual void Init(CharacterContext context, AbilitySystem system)
+        public virtual void BindCharacter(BaseCharacter owner)
         {
-            this.context = context;
+            this.owner = owner;
+        }
+
+        public virtual void BindSystem(AbilitySystem system)
+        {
             this.system = system;
         }
 
-        protected virtual void OnUpdate(float deltaTime)
+        public abstract void BindInput(InputAction input);
+        public abstract void UnbindInput(InputAction input);
+        
+
+        protected virtual void OnTickUpdate(float deltaTime)
         {
             // 更新
         }
@@ -85,7 +93,7 @@ namespace Battle.Character.Ability
             {
                 if (!system.IsTagBlocked(OwnTag))
                 {
-                    OnUpdate(deltaTime);
+                    OnTickUpdate(deltaTime);
                 }
             }
             else

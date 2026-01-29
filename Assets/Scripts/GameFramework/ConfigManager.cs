@@ -1,46 +1,49 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Battle.Character.Ability;
+using cfg;
+using SimpleJSON;
 using Tools.DataReader;
 using Tools.Singletons;
 using UnityEngine;
 
 namespace GameFramework
 {
-    [Serializable]
-    public class AbilityId
-    {
-        public int Id { get; set; }
-        public AbilityEnum AbilityEnum { get; set; }
-    }
-
     public class ConfigManager : Singleton<ConfigManager>
     {
-        private Dictionary<int,AbilityEnum> idToAbility = new Dictionary<int,AbilityEnum>();
+        private Tables tables;
         
         public void Init()
         {
-            ReadConfig();
-        }
-
-        private void ReadConfig()
-        {
-            var file = Application.streamingAssetsPath + "/Heroes.csv";
-            var abilities = CSVUtils.ReadCSV<AbilityId>(file);
-            foreach (var ability in abilities)
-            {
-                idToAbility.Add(ability.Id, ability.AbilityEnum);
-            }
+            string gameConfDir = Application.streamingAssetsPath + "/OutputData";
+            tables = new cfg.Tables(file => JSON.Parse(File.ReadAllText($"{gameConfDir}/{file}.json")));
         }
 
         public AbilityEnum GetAbilityById(int id)
         {
-            if (idToAbility.TryGetValue(id,out var value))
-            {
-                return value;
-            }
+            return (AbilityEnum)id;
+            // if (idToAbility.TryGetValue(id,out var value))
+            // {
+            //     return value;
+            // }
+            //
+            // return AbilityEnum.None;
+        }
 
-            return AbilityEnum.None;
+        public AbilityEnum[] GetCharacterAbilities(int id)
+        {
+            return ToEnumArray(tables.TbCharacterInfo.Get(id).Abilities);
+        }
+        
+        AbilityEnum[] ToEnumArray(int[] ids)
+        {
+            var result = new AbilityEnum[ids.Length];
+            for (int i = 0; i < ids.Length; i++)
+            {
+                result[i] = (AbilityEnum)Enum.ToObject(typeof(AbilityEnum), ids[i]);
+            }
+            return result;
         }
     }
 }

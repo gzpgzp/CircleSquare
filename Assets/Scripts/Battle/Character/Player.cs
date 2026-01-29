@@ -1,5 +1,6 @@
 using System;
 using Battle.Character.Ability;
+using Battle.Character.Ability.A2D;
 using UnityEngine;
 
 namespace Battle.Character
@@ -18,7 +19,7 @@ namespace Battle.Character
         }
 
         public GunAim gunAim;
-        public DashAbility dashAbility;
+        public DashAbility2D DashAbility2D;
 
         private void Update()
         {
@@ -32,7 +33,7 @@ namespace Battle.Character
             posToMousePosDir = mouseWorldPos - transform.position;
             
             gunAim.UpdateRotation(posToMousePosDir);
-            dashAbility.Dash(posToMousePosDir);
+            // DashAbility2D.Dash();
         }
     }
 }

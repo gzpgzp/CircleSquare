@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Battle.Inputs;
 
 namespace Battle.Character.Ability
 {
@@ -9,6 +10,7 @@ namespace Battle.Character.Ability
 
         public void AddAbility(BaseAbility ability)
         {
+            ability.BindSystem(this);
             abilities.Add(ability);
             abilities.Sort((a,b)=>b.priority.CompareTo(a.priority));
         }
