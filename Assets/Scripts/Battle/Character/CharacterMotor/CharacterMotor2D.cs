@@ -8,8 +8,8 @@ namespace Battle.Character.CharacterMotor
         public Vector2 velocity => rb.velocity;
         
         private Transform groundCheckPoint;
-        private float groundCheckRadius = 0.15f;
-        private LayerMask groundLayer;
+        private float groundCheckRadius = 0.1f;
+        private LayerMask groundLayer = LayerMask.GetMask("Ground");
 
         public bool IsGrounded { get; private set; }
 
@@ -29,9 +29,24 @@ namespace Battle.Character.CharacterMotor
             rb.velocity = new Vector2(x, rb.velocity.y);
         }
 
+        public void SetVelocityY(float y)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, y);
+        }
+
+        public void SetVelocityY(Vector2 v)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, v.y);
+        }
+
         public void SetVelocity(Vector2 v)
         {
             rb.velocity = v;
+        }
+
+        public void AddVelocity(Vector2 v)
+        {
+            rb.velocity += v;
         }
 
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse)

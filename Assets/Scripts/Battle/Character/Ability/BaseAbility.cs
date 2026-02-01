@@ -19,11 +19,11 @@ namespace Battle.Character.Ability
     {
         protected BaseCharacter owner;
         protected AbilitySystem system;
-        protected InputActionSO input;
         protected AbilityContext ctx;
+        protected BaseInput input;
 
         public int priority { get; protected set; }
-        protected bool isEnabled;
+        protected bool isEnabled = true;
 
         public AbilityTag OwnTag { get; protected set; }
         public AbilityTag BlockTags { get; protected set; }
@@ -51,9 +51,16 @@ namespace Battle.Character.Ability
             this.system = system;
         }
 
-        public abstract void BindInput(InputAction input);
-        public abstract void UnbindInput(InputAction input);
-        
+        public virtual void BindInput(InputAction input, BaseInput playerInput)
+        {
+            this.input = playerInput;
+        }
+
+        public virtual void UnbindInput(InputAction input)
+        {
+            
+        }
+
 
         protected virtual void OnTickUpdate(float deltaTime)
         {

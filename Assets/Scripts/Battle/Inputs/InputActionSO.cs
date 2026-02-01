@@ -21,7 +21,7 @@ namespace Battle.Inputs
         private event Action onDown;
         private event Action onUp;
         private event Action onHold;
-
+        
         public void RegisterDown(Action action)
         {
             onDown += action;

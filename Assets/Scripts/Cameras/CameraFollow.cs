@@ -6,6 +6,8 @@ namespace Cameras
 {
     public class CameraFollow : MonoBehaviour
     {
+        [SerializeField] private Transform camera;
+        
         [Header("要跟随的目标（玩家）")]
         public Transform target;
 
@@ -19,6 +21,20 @@ namespace Cameras
         public bool lockY = true;
 
         private Vector3 velocity = Vector3.zero;
+        private Vector2 yLimits = new Vector2(-2, 5);
+        
+        [SerializeField] private List<Vector2> limits = new List<Vector2>();
+        
+        public void SetFollow(Transform camera, Transform target)
+        {
+            this.camera = camera;
+            this.target = target;
+        }
+
+        public void ChangeLimits(int index)
+        {
+            yLimits = limits[index-1];
+        }
 
         void LateUpdate()
         {
@@ -30,13 +46,23 @@ namespace Cameras
             if (lockY)
             {
                 // 保持相机的原来Y
-                targetPos.y = transform.position.y;
+                targetPos.y = camera.position.y;
             }
 
-            // 2. 平滑插值
-            Vector3 smoothPos = Vector3.Lerp(transform.position, targetPos, smoothSpeed * Time.deltaTime);
+            if (targetPos.y > yLimits.y)
+            {
+                targetPos.y = yLimits.y;
+            }
+            else if (targetPos.y < yLimits.x)
+            {
+                targetPos.y = yLimits.x;
+            }
+            
 
-            transform.position = smoothPos;
+            // 2. 平滑插值
+            Vector3 smoothPos = Vector3.Lerp(camera.position, targetPos, smoothSpeed * Time.deltaTime);
+
+            camera.position = smoothPos;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Battle.Character.CharacterGlue
         public void AddAbility(BaseAbility ability, InputActionSO config)
         {
             var inputAction = input.AddInput(config);
-            ability.BindInput(inputAction);
+            ability.BindInput(inputAction, input);
             ability.InitContext(new AbilityContext()
             {
                 DirectionInput = from => { return GameWorld.Instance.ComputeMouse(from); }

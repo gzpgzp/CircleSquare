@@ -16,12 +16,14 @@ public partial class Tables
 {
     public Battle.TbAbilities TbAbilities {get; }
     public Battle.TbCharacterInfo TbCharacterInfo {get; }
+    public Battle.TbGuide TbGuide {get; }
     public demo.Tbitem Tbitem {get; }
 
     public Tables(System.Func<string, JSONNode> loader)
     {
         TbAbilities = new Battle.TbAbilities(loader("battle_tbabilities"));
         TbCharacterInfo = new Battle.TbCharacterInfo(loader("battle_tbcharacterinfo"));
+        TbGuide = new Battle.TbGuide(loader("battle_tbguide"));
         Tbitem = new demo.Tbitem(loader("demo_tbitem"));
         ResolveRef();
     }
@@ -30,6 +32,7 @@ public partial class Tables
     {
         TbAbilities.ResolveRef(this);
         TbCharacterInfo.ResolveRef(this);
+        TbGuide.ResolveRef(this);
         Tbitem.ResolveRef(this);
     }
 }

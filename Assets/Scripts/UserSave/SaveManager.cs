@@ -22,6 +22,7 @@ namespace UserSave
                 {
                     id = System.Guid.NewGuid().ToString(),
                     name = "Player",
+                    levelIndex = 1,
                 };
 
                 saveData = new SaveData()
@@ -42,6 +43,11 @@ namespace UserSave
         public void UpdatePlayerData(PlayerContext playerContext)
         {
             saveData.playerContext = playerContext;
+            Save(saveData);
+        }
+
+        public void Save()
+        {
             Save(saveData);
         }
 

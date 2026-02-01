@@ -1,5 +1,6 @@
 using System;
 using Battle.GameFlow;
+using Cameras;
 using Define;
 using NormalUI;
 using Tools.Dialogs;
@@ -37,6 +38,26 @@ namespace GameFramework
             MMEventManager.TriggerEvent(e);
         }
     }
+    
+    public struct GameRestartEvent
+    {
+        static GameRestartEvent e;
+
+        public static void Trigger()
+        {
+            MMEventManager.TriggerEvent(e);
+        }
+    }
+    
+    public struct GameNextLevelEvent
+    {
+        static GameNextLevelEvent e;
+
+        public static void Trigger()
+        {
+            MMEventManager.TriggerEvent(e);
+        }
+    }
 
     public class GameFrameWork : MMEventListener<GameStartEvent>, MMEventListener<GameStopEvent>
     {
@@ -65,16 +86,19 @@ namespace GameFramework
         private void InitGameStartScene()
         {
             // 初始化游戏菜单
+            CameraManager.Instance.ResetMainCameraPos();
             UIManager.Instance.ShowStartPanel();
+            MyResourcesManager.Instance.LoadAndInstantiate("Prefabs/WorldWall");
         }
 
         private void OnGameStart(GameContext ctx)
         {            
-            if (ctx.isNewGame)
-            {
-                SaveManager.Instance.Delete();
-            }
-            var playerContext = SaveManager.Instance.GetPlayerData();
+            // if (ctx.isNewGame)
+            // {
+            //     SaveManager.Instance.Delete();
+            // }
+
+            SaveManager.Instance.GetPlayerData();
             gameWorld = MyResourcesManager.Instance.LoadAndInstantiate("Prefabs/GameWorld").GetComponent<GameWorld>();
             gameWorld.Init(ctx);
         }

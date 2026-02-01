@@ -7,5 +7,7 @@ namespace Battle
     {
         public string name;
         public string id;
+        public int levelIndex;
+        public bool isGuided; 
     }
 }

@@ -14,17 +14,6 @@ namespace Battle.Inputs
     public class PlayerInput : BaseInput
     {
         public List<InputAction> inputs;
-        
-
-        public override float Horizontal
-        {
-            get => Input.GetAxisRaw("Horizontal");
-        }
-
-        public override float Vertical
-        {
-            get => Input.GetAxisRaw("Vertical");
-        }
 
         public PlayerInput()
         {
@@ -65,6 +54,9 @@ namespace Battle.Inputs
                     action.inputPhase = InputPhase.Up;
                 }
             }
+            
+            Horizontal = Input.GetAxisRaw("Horizontal");
+            Vertical = Input.GetAxisRaw("Vertical");
         }
     }
 }

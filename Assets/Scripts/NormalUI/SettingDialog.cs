@@ -15,6 +15,7 @@ namespace NormalUI
     {
         [SerializeField] private Button closeBtn;
         [SerializeField] private Button menuBtn;
+        [SerializeField] private Button restartBtn;
         [SerializeField] private SoundItem bgmVolumeSlider;
         [SerializeField] private SoundItem musicVolumeSlider;
 
@@ -22,12 +23,14 @@ namespace NormalUI
         {
             closeBtn.onClick.AddListener(OnCloseButtonClick);
             menuBtn.onClick.AddListener(OnMenuButtonClick);
+            restartBtn.onClick.AddListener(OnRestartButtonClick);
         }
 
         private void OnDestroy()
         {
             closeBtn.onClick.RemoveAllListeners();
             menuBtn.onClick.RemoveAllListeners();
+            restartBtn.onClick.RemoveAllListeners();
         }
 
         private void OnCloseButtonClick()
@@ -39,6 +42,12 @@ namespace NormalUI
         {
             Close();
             GameStopEvent.Trigger();
+        }
+
+        private void OnRestartButtonClick()
+        {
+            Close();
+            GameRestartEvent.Trigger();
         }
 
         protected override void OnShowTyped(SettingDialogContext context)

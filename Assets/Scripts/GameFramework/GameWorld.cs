@@ -22,12 +22,15 @@ namespace GameFramework
         
         public void Init(GameContext ctx)
         {
+            GuideManager.Instance.Init();
             gameManager = new GameManager();
-            gameManager.GameStart(ctx);
+            gameManager.GameStart();
         }
 
         public void StopGame()
         {
+            GuideManager.Instance.OnDestroy();
+            
             gameManager.StopGame();
         }
 

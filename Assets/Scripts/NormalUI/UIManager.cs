@@ -12,6 +12,7 @@ namespace NormalUI
         private const string PanelPre = "Prefabs/UI/Panels/";
         private const string StartPanel = PanelPre + "StartPanel";
         private const string gameTopPanel = PanelPre + "GameTopPanel";
+        private const string levelSelectPanel = PanelPre + "LevelSelectPanel";
         
         [SerializeField] private RectTransform dialogTr;
         [SerializeField] private RectTransform panelTr;
@@ -37,6 +38,11 @@ namespace NormalUI
         public void ShowGameTopPanel()
         {
             MyResourcesManager.Instance.LoadAndInstantiate(gameTopPanel,panelTr);
+        }
+
+        public void ShowLevelSelectPanel()
+        {
+            MyResourcesManager.Instance.LoadAndInstantiate(levelSelectPanel,panelTr);
         }
     }
 }

@@ -1,4 +1,5 @@
 using Battle.Character.CharacterMotor;
+using UnityEngine;
 
 namespace Battle.Character
 {
@@ -6,6 +7,8 @@ namespace Battle.Character
     {
         public CharacterMotor2D motor { get; protected set; }
 
+        public Vector3 velocity;
+        
         public override void Init(CharacterContext ctx)
         {
             base.Init(ctx);
@@ -17,6 +20,7 @@ namespace Battle.Character
         {
             base.Tick(dt);
             motor.Tick(dt);
+            velocity = motor.velocity;
         }
     }
 }

@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Battle.Character.Ability;
 using cfg;
 using SimpleJSON;
 using Tools.DataReader;
 using Tools.Singletons;
 using UnityEngine;
+using CharacterInfo = cfg.Battle.CharacterInfo;
 
 namespace GameFramework
 {
@@ -31,10 +33,15 @@ namespace GameFramework
             // return AbilityEnum.None;
         }
 
-        public AbilityEnum[] GetCharacterAbilities(int id)
+        public CharacterInfo GetCharacterAbilities(int id)
         {
-            return ToEnumArray(tables.TbCharacterInfo.Get(id).Abilities);
+            return tables.TbCharacterInfo.Get(id);
         }
+
+        // public AbilityEnum[] GetCharacterAbilities(int id)
+        // {
+        //     return ToEnumArray(tables.TbCharacterInfo.Get(id).Abilities);
+        // }
         
         AbilityEnum[] ToEnumArray(int[] ids)
         {
@@ -44,6 +51,32 @@ namespace GameFramework
                 result[i] = (AbilityEnum)Enum.ToObject(typeof(AbilityEnum), ids[i]);
             }
             return result;
+        }
+
+        public int GetMaxLevel()
+        {
+            return 2;
+        }
+
+        public bool CheckNextGuide(int index)
+        {
+            return index <= tables.TbGuide.DataList.Count;
+        }
+
+        public string GetGuideText(int id)
+        {
+            return tables.TbGuide.Get(1).Text;
+        }
+
+        public List<string> GetGuideTexts()
+        {
+            var list = new List<string>();
+            foreach (var guide in tables.TbGuide.DataList)
+            {
+                list.Add(guide.Text);
+            }
+
+            return list;
         }
     }
 }

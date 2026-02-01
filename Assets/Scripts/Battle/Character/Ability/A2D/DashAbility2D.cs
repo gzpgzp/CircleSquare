@@ -80,7 +80,7 @@ namespace Battle.Character.Ability.A2D
             );
         }
 
-        public override void BindInput(InputAction input)
+        public override void BindInput(InputAction input, BaseInput playerInput)
         {
             input.RegisterDown(Dash);
         }

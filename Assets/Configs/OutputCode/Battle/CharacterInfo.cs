@@ -19,6 +19,7 @@ public sealed partial class CharacterInfo : Luban.BeanBase
     {
         { if(!_buf["ID"].IsNumber) { throw new SerializationException(); }  ID = _buf["ID"]; }
         { var __json0 = _buf["Abilities"]; if(!__json0.IsArray) { throw new SerializationException(); } int _n0 = __json0.Count; Abilities = new int[_n0]; int __index0=0; foreach(JSONNode __e0 in __json0.Children) { int __v0;  { if(!__e0.IsNumber) { throw new SerializationException(); }  __v0 = __e0; }  Abilities[__index0++] = __v0; }   }
+        { if(!_buf["ModelID"].IsNumber) { throw new SerializationException(); }  ModelID = _buf["ModelID"]; }
     }
 
     public static CharacterInfo DeserializeCharacterInfo(JSONNode _buf)
@@ -34,6 +35,10 @@ public sealed partial class CharacterInfo : Luban.BeanBase
     /// 能力
     /// </summary>
     public readonly int[] Abilities;
+    /// <summary>
+    /// 模型id
+    /// </summary>
+    public readonly int ModelID;
    
     public const int __ID__ = 1010443457;
     public override int GetTypeId() => __ID__;
@@ -47,6 +52,7 @@ public sealed partial class CharacterInfo : Luban.BeanBase
         return "{ "
         + "ID:" + ID + ","
         + "Abilities:" + Luban.StringUtil.CollectionToString(Abilities) + ","
+        + "ModelID:" + ModelID + ","
         + "}";
     }
 }

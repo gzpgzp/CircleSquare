@@ -1,3 +1,4 @@
+using Battle.Character.CharacterMotor;
 using Battle.Inputs;
 
 namespace Battle.Character.Ability.A2D
@@ -7,6 +8,11 @@ namespace Battle.Character.Ability.A2D
         protected Character2D character2D
         {
             get => (Character2D)owner;
+        }
+
+        protected CharacterMotor2D motor
+        {
+            get => character2D.motor;
         }
     }
 }
