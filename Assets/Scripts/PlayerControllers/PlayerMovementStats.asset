@@ -36,7 +36,7 @@ MonoBehaviour:
   jumpBufferTime: 0.125
   jumpCoyoteTime: 0.1
   debugShowIsGrounded: 1
-  debugShowHeadBumpBox: 0
+  debugShowHeadBumpBox: 1
   showWalkJumpArc: 1
   showRunJumpArc: 0
   stopOnCollision: 0
