@@ -12,6 +12,12 @@ namespace Tools.GameObjectPools
             SpawningPool.AddPrefab(obj.name, obj);
         }
 
+        public void Load(string key, string objectPath)
+        {
+            var obj = MyResourcesManager.Instance.Load<GameObject>(objectPath);
+            SpawningPool.AddPrefab(key, obj);
+        }
+
         public GameObject CreateGameObject(string objectName)
         {
             return SpawningPool.CreateFromCache(objectName);
