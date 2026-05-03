@@ -1,4 +1,3 @@
-using Battle.GameFlow;
 using Define;
 using GameFramework;
 using UnityEngine;
@@ -27,13 +26,13 @@ namespace NormalUI
 
         private void OnStartButtonClicked()
         {
-            MySceneManager.Instance.LoadScene(GameScene.BattleScene,()=>OnGameStart(true));
+            MySceneManager.Instance.LoadScene(GameScene.BattleScene, () => OnGameStart(true));
             Destroy(gameObject);
         }
 
         private void OnContinueButtonClicked()
         {
-            MySceneManager.Instance.LoadScene(GameScene.BattleScene,()=>OnGameStart(false));
+            MySceneManager.Instance.LoadScene(GameScene.BattleScene, () => OnGameStart(false));
             Destroy(gameObject);
         }
 
@@ -48,9 +47,11 @@ namespace NormalUI
 
         private void OnGameStart(bool isNewGame)
         {
-            GameStartEvent.Trigger(new GameContext()
+            // 模式已在 StartUp 的 Inspector 里选好，直接读取
+            GameStartEvent.Trigger(new GameContext
             {
-                isNewGame = isNewGame
+                isNewGame = isNewGame,
+                gameMode  = StartUp.SelectedMode,
             });
         }
     }

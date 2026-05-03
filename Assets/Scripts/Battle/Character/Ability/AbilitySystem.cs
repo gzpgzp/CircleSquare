@@ -37,5 +37,13 @@ namespace Battle.Character.Ability
                 ability.Tick(dt);
             }
         }
+
+        /// <summary>
+        /// 获取所有已注册的能力
+        /// </summary>
+        public List<BaseAbility> GetAbilities()
+        {
+            return abilities;
+        }
     }
 }

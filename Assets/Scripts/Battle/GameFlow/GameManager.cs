@@ -1,41 +1,49 @@
 using GameFramework;
 using NormalUI;
-using Tools.Singletons;
+using SquareBattle.BattleCore;
 using UserSave;
 
 namespace Battle.GameFlow
 {
-    // 每个游戏自己的GameManager
-    public class GameManager : Singleton<GameManager>
+    /// <summary>
+    /// 战斗模式的游戏管理器。
+    /// 由 GameWorld 创建并持有，不继承 Singleton，避免 new + Instance 冲突。
+    /// </summary>
+    public class GameManager
     {
-        public CharacterManager characterManager;
-        public LevelManager levelManager;
-        
+        public CharacterManager characterManager { get; private set; }
+        public LevelManager levelManager { get; private set; }
+
         public void GameStart(GameContext ctx)
         {
             UIManager.Instance.ShowGameTopPanel();
-            
-            InitManager();
-            InitLevel();
+
+            InitManagers();
+            InitLevel(ctx);
         }
 
         public void StopGame()
         {
-            
+
         }
 
-        private void InitManager()
+        private void InitManagers()
         {
             characterManager = new CharacterManager();
             levelManager = new LevelManager();
-            
+
             characterManager.Init();
         }
 
-        private void InitLevel()
+        private void InitLevel(GameContext ctx)
         {
-            // 创建关卡
-            levelManager.CreateLevel();
+            ILevelSetup setup = ctx.gameMode switch
+            {
+                GameMode.SquareBattle => new SquareBattleLevelSetup(),
+                GameMode.NewBattle   => new NewBattleLevelSetup(),
+                _                    => new NewBattleLevelSetup(),
+            };
+            levelManager.CreateLevel(ctx, characterManager, setup);
         }
 
         public void Tick(float dt)

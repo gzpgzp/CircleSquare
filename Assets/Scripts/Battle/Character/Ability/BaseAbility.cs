@@ -51,8 +51,8 @@ namespace Battle.Character.Ability
             this.system = system;
         }
 
-        public abstract void BindInput(InputAction input);
-        public abstract void UnbindInput(InputAction input);
+        public virtual void BindInput(InputAction input) { }
+        public virtual void UnbindInput(InputAction input) { }
         
 
         protected virtual void OnTickUpdate(float deltaTime)
@@ -76,6 +76,8 @@ namespace Battle.Character.Ability
             {
                 return;
             }
+
+            this.isEnabled = isEnabled;
 
             if (isEnabled)
             {

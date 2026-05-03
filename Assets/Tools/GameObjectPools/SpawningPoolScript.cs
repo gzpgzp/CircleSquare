@@ -1,4 +1,4 @@
-﻿    //
+    //
 // Spawning Pool for Unity
 // (c) 2016 Digital Ruby, LLC
 // Source code may be used for personal or commercial projects.
@@ -151,7 +151,6 @@ namespace Tools.GameObjectPools
                     foreach (GameObject obj in list)
                     {
                         activeGameObjectsAndKeys.Remove(obj);
-                        interfaces.Remove(obj);
                         Object.Destroy(obj);
                     }
                 }
@@ -202,12 +201,9 @@ namespace Tools.GameObjectPools
                 pooledObject = GameObject.Instantiate(prefab);
                 GameObject.DontDestroyOnLoad(pooledObject);
                 pooledObject.hideFlags = DefaultHideFlags;
-                IPooledObject pooled = pooledObject.GetComponent<IPooledObject>();
-                if (pooled != null)
-                {
-                    interfaces[pooledObject] = pooled;
-                    pooled.PooledObjectInstantiated();
-                }
+                IPooledObject pooledInterface = pooledObject.GetComponent<IPooledObject>();
+                if (pooledInterface != null)
+                    interfaces[pooledObject] = pooledInterface;
             }
             else
             {
@@ -215,11 +211,9 @@ namespace Tools.GameObjectPools
                 pooledObject = list[index];
                 list.RemoveAt(index);
                 cacheCount--;
-                IPooledObject pooled;
-                if (interfaces.TryGetValue(pooledObject, out pooled))
-                {
-                    pooled.PooledObjectSpawned();
-                }
+                IPooledObject pooledInterface;
+                if (interfaces.TryGetValue(pooledObject, out pooledInterface))
+                    pooledInterface.OnSpawned();
             }
 
             ActivateObject(pooledObject, key);
@@ -268,12 +262,9 @@ namespace Tools.GameObjectPools
             }
             pooledObject.SetActive(false);
             cacheCount++;
-            IPooledObject pooled;
-            if (interfaces.TryGetValue(pooledObject, out pooled))
-            {
-                pooled.PooledObjectReturnedToPool();
-            }
-
+            IPooledObject pooledInterface;
+            if (interfaces.TryGetValue(pooledObject, out pooledInterface))
+                pooledInterface.OnDespawned();
             return true;
         }
 
@@ -294,7 +285,6 @@ namespace Tools.GameObjectPools
         /// </summary>
         public static void RecycleActiveObjects()
         {
-            IPooledObject pooled;
             foreach (var v in activeGameObjectsAndKeys)
             {
                 List<GameObject> list;
@@ -303,10 +293,6 @@ namespace Tools.GameObjectPools
                     list.Add(v.Key);
                     v.Key.SetActive(false);
                     cacheCount++;
-                    if (interfaces.TryGetValue(v.Key, out pooled))
-                    {
-                        pooled.PooledObjectReturnedToPool();
-                    }
                 }
             }
             activeGameObjectsAndKeys.Clear();
@@ -322,7 +308,6 @@ namespace Tools.GameObjectPools
             {
                 foreach (var v in activeGameObjectsAndKeys)
                 {
-                    interfaces.Remove(v.Key);
                     Object.Destroy(v.Key);
                 }
                 activeGameObjectsAndKeys.Clear();
@@ -332,7 +317,6 @@ namespace Tools.GameObjectPools
             {
                 foreach (var gameObjectToDestroy in keyValue.Value)
                 {
-                    interfaces.Remove(gameObjectToDestroy);
                     Object.Destroy(gameObjectToDestroy);
                 }
             }
@@ -373,23 +357,15 @@ namespace Tools.GameObjectPools
     }
 
     /// <summary>
-    /// Extra functions for pooled objects (optional)
+    /// 对象池生命周期回调接口（可选）。
+    /// 业务脚本实现此接口以接收池化事件，禁止在接口中添加主动操作方法。
+    /// OnSpawned：对象从池中取出时回调，用于重置运行时状态。
+    /// OnDespawned：对象归还池时回调，用于清理引用。
     /// </summary>
     public interface IPooledObject
     {
-        /// <summary>
-        /// Object was instantiated (created for the first time)
-        /// </summary>
-        void PooledObjectInstantiated();
-
-        /// <summary>
-        /// Object was spawned
-        /// </summary>
-        void PooledObjectSpawned();
-
-        /// <summary>
-        /// Object was returned to pool
-        /// </summary>
-        void PooledObjectReturnedToPool();
+        void OnSpawned();
+        void OnDespawned();
     }
+
 }

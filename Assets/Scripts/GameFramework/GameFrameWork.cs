@@ -75,6 +75,10 @@ namespace GameFramework
                 SaveManager.Instance.Delete();
             }
             var playerContext = SaveManager.Instance.GetPlayerData();
+
+            // HealthBarManager 动态加载（预制体路径：Resources/Prefabs/HealthBarManager）
+            MyResourcesManager.Instance.LoadAndInstantiate("Prefabs/HealthBarManager");
+
             gameWorld = MyResourcesManager.Instance.LoadAndInstantiate("Prefabs/GameWorld").GetComponent<GameWorld>();
             gameWorld.Init(ctx);
         }
