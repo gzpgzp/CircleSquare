@@ -11,8 +11,6 @@ namespace UserSave
         private string savePath => Path.Combine(saveFolder, "save.json");
 
         public SaveData saveData { get; private set; }
-
-        // private bool isNewLoadDebug = true;
         
         public PlayerContext GetPlayerData()
         {

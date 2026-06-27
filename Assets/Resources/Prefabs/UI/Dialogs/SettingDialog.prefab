@@ -1212,6 +1212,7 @@ MonoBehaviour:
   menuBtn: {fileID: 3147405876756665334}
   bgmVolumeSlider: {fileID: 8000480132676935024}
   musicVolumeSlider: {fileID: 2627354642577346516}
+  clearDataBtn: {fileID: 0}
 --- !u!1 &5695913861355882893
 GameObject:
   m_ObjectHideFlags: 0

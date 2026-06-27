@@ -1,0 +1,13 @@
+##var,Id,QuestId,RewardType,RewardId,Amount
+##type,int,string,int,string,int
+##,奖励ID,所属任务,奖励类型,奖励物品ID,数量
+,1,quest_first_hunt,0,,100
+,2,quest_first_hunt,1,,50
+,3,quest_collect_herbs,0,,200
+,4,quest_collect_herbs,2,potion_hp_small,5
+,5,quest_orc_threat,0,,500
+,6,quest_orc_threat,1,,200
+,7,quest_orc_threat,2,sword_iron,1
+,8,quest_cave_explore,0,,1000
+,9,quest_cave_explore,1,,500
+,10,quest_cave_explore,2,potion_hp_large,3

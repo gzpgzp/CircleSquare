@@ -1,4 +1,5 @@
 using System;
+using Adventure;
 using Battle;
 
 namespace UserSave
@@ -8,5 +9,6 @@ namespace UserSave
     {
         public PlayerContext playerContext;
         public int saveId; // todo
+        public QuestSaveData questSaveData;
     }
 }

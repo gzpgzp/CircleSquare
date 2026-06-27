@@ -130,6 +130,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 867763294401293400, guid: 2912efe4711bf324c8b60fb9b894efd9, type: 3}
+      propertyPath: gameMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185137835090863184, guid: 2912efe4711bf324c8b60fb9b894efd9, type: 3}
+      propertyPath: orthographic size
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6216837927589735022, guid: 2912efe4711bf324c8b60fb9b894efd9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

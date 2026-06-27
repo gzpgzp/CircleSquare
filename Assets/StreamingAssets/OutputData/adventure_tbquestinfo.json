@@ -1,0 +1,34 @@
+[
+  {
+    "Id": 1,
+    "QuestId": "quest_first_hunt",
+    "Name": "初次狩猎",
+    "Desc": "到森林消灭几只哥布林吧",
+    "RecommendLevel": 1,
+    "PrerequisiteQuestId": ""
+  },
+  {
+    "Id": 2,
+    "QuestId": "quest_collect_herbs",
+    "Name": "采集药草",
+    "Desc": "为商店收集一些治疗药草",
+    "RecommendLevel": 2,
+    "PrerequisiteQuestId": "quest_first_hunt"
+  },
+  {
+    "Id": 3,
+    "QuestId": "quest_orc_threat",
+    "Name": "兽人威胁",
+    "Desc": "森林深处出现了兽人需要清除",
+    "RecommendLevel": 5,
+    "PrerequisiteQuestId": "quest_first_hunt"
+  },
+  {
+    "Id": 4,
+    "QuestId": "quest_cave_explore",
+    "Name": "洞穴探索",
+    "Desc": "探索新发现的幽暗洞穴",
+    "RecommendLevel": 10,
+    "PrerequisiteQuestId": "quest_orc_threat"
+  }
+]

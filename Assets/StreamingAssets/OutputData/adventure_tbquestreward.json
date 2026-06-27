@@ -1,0 +1,72 @@
+[
+  {
+    "Id": 1,
+    "QuestId": "quest_first_hunt",
+    "RewardType": 0,
+    "RewardId": "",
+    "Amount": 100
+  },
+  {
+    "Id": 2,
+    "QuestId": "quest_first_hunt",
+    "RewardType": 1,
+    "RewardId": "",
+    "Amount": 50
+  },
+  {
+    "Id": 3,
+    "QuestId": "quest_collect_herbs",
+    "RewardType": 0,
+    "RewardId": "",
+    "Amount": 200
+  },
+  {
+    "Id": 4,
+    "QuestId": "quest_collect_herbs",
+    "RewardType": 2,
+    "RewardId": "potion_hp_small",
+    "Amount": 5
+  },
+  {
+    "Id": 5,
+    "QuestId": "quest_orc_threat",
+    "RewardType": 0,
+    "RewardId": "",
+    "Amount": 500
+  },
+  {
+    "Id": 6,
+    "QuestId": "quest_orc_threat",
+    "RewardType": 1,
+    "RewardId": "",
+    "Amount": 200
+  },
+  {
+    "Id": 7,
+    "QuestId": "quest_orc_threat",
+    "RewardType": 2,
+    "RewardId": "sword_iron",
+    "Amount": 1
+  },
+  {
+    "Id": 8,
+    "QuestId": "quest_cave_explore",
+    "RewardType": 0,
+    "RewardId": "",
+    "Amount": 1000
+  },
+  {
+    "Id": 9,
+    "QuestId": "quest_cave_explore",
+    "RewardType": 1,
+    "RewardId": "",
+    "Amount": 500
+  },
+  {
+    "Id": 10,
+    "QuestId": "quest_cave_explore",
+    "RewardType": 2,
+    "RewardId": "potion_hp_large",
+    "Amount": 3
+  }
+]

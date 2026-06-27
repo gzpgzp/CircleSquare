@@ -1,4 +1,5 @@
 using System;
+using Adventure.UI;
 using Tools.Dialogs;
 using Tools.ResourcesTool;
 using Tools.Singletons;
@@ -17,16 +18,16 @@ namespace NormalUI
         [SerializeField] private RectTransform panelTr;
         
         private DialogManager dialogManager;
-        
+
+        private void Awake()
+        {
+            Init();
+        }
+
         public void Init()
         {
             dialogManager = new DialogManager();
             dialogManager.Init(dialogTr);
-        }
-
-        public void OnDestroy()
-        {
-            
         }
 
         public void ShowStartPanel()

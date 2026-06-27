@@ -14,23 +14,56 @@ namespace cfg
 {
 public partial class Tables
 {
+    /// <summary>
+    /// 道具配置表
+    /// </summary>
+    public Adventure.TbItemInfo TbItemInfo {get; }
+    /// <summary>
+    /// 角色配置表
+    /// </summary>
+    public Adventure.TbAdventureCharacter TbAdventureCharacter {get; }
+    /// <summary>
+    /// 地点配置表
+    /// </summary>
+    public Adventure.TbLocationInfo TbLocationInfo {get; }
+    /// <summary>
+    /// 任务配置表
+    /// </summary>
+    public Adventure.TbQuestInfo TbQuestInfo {get; }
+    /// <summary>
+    /// 任务条件表
+    /// </summary>
+    public Adventure.TbQuestCondition TbQuestCondition {get; }
+    /// <summary>
+    /// 任务奖励表
+    /// </summary>
+    public Adventure.TbQuestReward TbQuestReward {get; }
     public Battle.TbAbilities TbAbilities {get; }
     public Battle.TbCharacterInfo TbCharacterInfo {get; }
-    public demo.Tbitem Tbitem {get; }
 
     public Tables(System.Func<string, JSONNode> loader)
     {
+        TbItemInfo = new Adventure.TbItemInfo(loader("adventure_tbiteminfo"));
+        TbAdventureCharacter = new Adventure.TbAdventureCharacter(loader("adventure_tbadventurecharacter"));
+        TbLocationInfo = new Adventure.TbLocationInfo(loader("adventure_tblocationinfo"));
+        TbQuestInfo = new Adventure.TbQuestInfo(loader("adventure_tbquestinfo"));
+        TbQuestCondition = new Adventure.TbQuestCondition(loader("adventure_tbquestcondition"));
+        TbQuestReward = new Adventure.TbQuestReward(loader("adventure_tbquestreward"));
         TbAbilities = new Battle.TbAbilities(loader("battle_tbabilities"));
         TbCharacterInfo = new Battle.TbCharacterInfo(loader("battle_tbcharacterinfo"));
-        Tbitem = new demo.Tbitem(loader("demo_tbitem"));
         ResolveRef();
     }
     
     private void ResolveRef()
     {
+        TbItemInfo.ResolveRef(this);
+        TbAdventureCharacter.ResolveRef(this);
+        TbLocationInfo.ResolveRef(this);
+        TbQuestInfo.ResolveRef(this);
+        TbQuestCondition.ResolveRef(this);
+        TbQuestReward.ResolveRef(this);
         TbAbilities.ResolveRef(this);
         TbCharacterInfo.ResolveRef(this);
-        Tbitem.ResolveRef(this);
     }
 }
 

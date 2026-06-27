@@ -1,0 +1,129 @@
+<module name="Adventure">
+    <!-- ==================== 枚举 ==================== -->
+    <enum name="EItemType" comment="道具类型">
+        <var name="Consumable" value="0" comment="消耗品"/>
+        <var name="Equipment" value="1" comment="装备"/>
+        <var name="Material" value="2" comment="材料"/>
+        <var name="Quest" value="3" comment="任务道具"/>
+        <var name="Misc" value="4" comment="杂物"/>
+    </enum>
+
+    <enum name="EItemRarity" comment="道具品质">
+        <var name="Common" value="0" comment="普通"/>
+        <var name="Uncommon" value="1" comment="优秀"/>
+        <var name="Rare" value="2" comment="稀有"/>
+        <var name="Epic" value="3" comment="史诗"/>
+        <var name="Legendary" value="4" comment="传说"/>
+    </enum>
+
+    <enum name="ECharacterClass" comment="角色职业">
+        <var name="Warrior" value="0" comment="战士"/>
+        <var name="Mage" value="1" comment="法师"/>
+        <var name="Archer" value="2" comment="弓箭手"/>
+        <var name="Healer" value="3" comment="治疗"/>
+    </enum>
+
+    <enum name="ELocationType" comment="地点类型">
+        <var name="AdventurerGuild" value="0" comment="冒险者公会"/>
+        <var name="BattleArea" value="1" comment="战斗区域"/>
+        <var name="QuestBoard" value="2" comment="任务公告板"/>
+        <var name="Shop" value="3" comment="商店"/>
+        <var name="Blacksmith" value="4" comment="铁匠铺"/>
+        <var name="Tavern" value="5" comment="酒馆"/>
+    </enum>
+
+    <enum name="EQuestConditionType" comment="任务条件类型">
+        <var name="KillEnemy" value="0" comment="击杀敌人"/>
+        <var name="CollectItem" value="1" comment="收集物品"/>
+        <var name="ReachArea" value="2" comment="到达区域"/>
+        <var name="TalkToNPC" value="3" comment="与NPC对话"/>
+        <var name="ClearLevel" value="4" comment="通关关卡"/>
+    </enum>
+
+    <enum name="ERewardType" comment="奖励类型">
+        <var name="Gold" value="0" comment="金币"/>
+        <var name="Exp" value="1" comment="经验"/>
+        <var name="Item" value="2" comment="道具"/>
+        <var name="Equipment" value="3" comment="装备"/>
+    </enum>
+
+    <!-- ==================== 道具表 ==================== -->
+    <bean name="ItemInfo" comment="道具配置">
+        <var name="Id" type="int" comment="道具ID(主键)"/>
+        <var name="ItemId" type="string" comment="道具字符串ID"/>
+        <var name="Name" type="string" comment="道具名称"/>
+        <var name="Desc" type="string" comment="描述"/>
+        <var name="ItemType" type="int" comment="类型"/>
+        <var name="Rarity" type="int" comment="品质"/>
+        <var name="MaxStack" type="int" comment="最大堆叠数"/>
+        <var name="BuyPrice" type="int" comment="购买价格"/>
+        <var name="SellPrice" type="int" comment="出售价格"/>
+        <var name="HealAmount" type="int" comment="恢复量"/>
+        <var name="EffectId" type="string" comment="效果ID"/>
+    </bean>
+
+    <!-- ==================== 角色表 ==================== -->
+    <bean name="CharacterInfo" comment="角色配置">
+        <var name="Id" type="int" comment="角色ID"/>
+        <var name="CharacterId" type="string" comment="角色字符串ID"/>
+        <var name="Name" type="string" comment="角色名称"/>
+        <var name="CharacterClass" type="int" comment="职业(0战士/1法师/2弓手/3治疗)"/>
+        <var name="BaseHp" type="float" comment="1级生命值"/>
+        <var name="BaseAtk" type="float" comment="1级攻击力"/>
+        <var name="BaseDef" type="float" comment="1级防御力"/>
+        <var name="BaseSpd" type="float" comment="攻击速度"/>
+        <var name="BaseCritRate" type="float" comment="暴击率"/>
+        <var name="BaseCritDmg" type="float" comment="暴击伤害倍率"/>
+        <var name="HpPerLevel" type="float" comment="每级生命成长"/>
+        <var name="AtkPerLevel" type="float" comment="每级攻击成长"/>
+        <var name="DefPerLevel" type="float" comment="每级防御成长"/>
+        <var name="SpdPerLevel" type="float" comment="每级速度成长"/>
+        <var name="BaseExpToLevel" type="int" comment="升到2级所需经验"/>
+        <var name="ExpGrowthFactor" type="float" comment="经验递增系数"/>
+        <var name="MaxLevel" type="int" comment="最大等级"/>
+    </bean>
+
+    <!-- ==================== 地点表 ==================== -->
+    <bean name="LocationInfo" comment="地点配置">
+        <var name="Id" type="int" comment="地点ID"/>
+        <var name="LocationId" type="string" comment="地点字符串ID"/>
+        <var name="Name" type="string" comment="地点名称"/>
+        <var name="Desc" type="string" comment="描述"/>
+        <var name="LocationType" type="int" comment="地点类型"/>
+        <var name="UnlockLevel" type="int" comment="解锁等级"/>
+    </bean>
+
+    <!-- ==================== 任务表 ==================== -->
+    <bean name="QuestInfo" comment="任务配置">
+        <var name="Id" type="int" comment="任务ID"/>
+        <var name="QuestId" type="string" comment="任务字符串ID"/>
+        <var name="Name" type="string" comment="任务名称"/>
+        <var name="Desc" type="string" comment="描述"/>
+        <var name="RecommendLevel" type="int" comment="推荐等级"/>
+        <var name="PrerequisiteQuestId" type="string" comment="前置任务ID"/>
+    </bean>
+
+    <bean name="QuestConditionCfg" comment="任务条件配置">
+        <var name="Id" type="int" comment="条件ID"/>
+        <var name="QuestId" type="string" comment="所属任务ID"/>
+        <var name="ConditionType" type="int" comment="条件类型"/>
+        <var name="TargetId" type="string" comment="目标ID"/>
+        <var name="RequiredAmount" type="int" comment="需求数量"/>
+    </bean>
+
+    <bean name="QuestRewardCfg" comment="任务奖励配置">
+        <var name="Id" type="int" comment="奖励ID"/>
+        <var name="QuestId" type="string" comment="所属任务ID"/>
+        <var name="RewardType" type="int" comment="奖励类型"/>
+        <var name="RewardId" type="string" comment="奖励物品ID"/>
+        <var name="Amount" type="int" comment="数量"/>
+    </bean>
+
+    <!-- ==================== 表注册 ==================== -->
+    <table name="TbItemInfo" value="ItemInfo" index="ItemId" input="adventure/ItemInfo.csv" comment="道具配置表"/>
+    <table name="TbAdventureCharacter" value="CharacterInfo" index="CharacterId" input="adventure/CharacterInfo.csv" comment="角色配置表"/>
+    <table name="TbLocationInfo" value="LocationInfo" index="LocationId" input="adventure/LocationInfo.csv" comment="地点配置表"/>
+    <table name="TbQuestInfo" value="QuestInfo" index="QuestId" input="adventure/QuestInfo.csv" comment="任务配置表"/>
+    <table name="TbQuestCondition" value="QuestConditionCfg" input="adventure/QuestCondition.csv" mode="list" comment="任务条件表"/>
+    <table name="TbQuestReward" value="QuestRewardCfg" input="adventure/QuestReward.csv" mode="list" comment="任务奖励表"/>
+</module>

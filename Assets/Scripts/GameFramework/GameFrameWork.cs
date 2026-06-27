@@ -1,11 +1,7 @@
-using System;
-using Battle.GameFlow;
 using Define;
 using NormalUI;
-using Tools.Dialogs;
 using Tools.EventTool;
 using Tools.ResourcesTool;
-using UnityEngine;
 using UserSave;
 
 namespace GameFramework
@@ -69,12 +65,11 @@ namespace GameFramework
         }
 
         private void OnGameStart(GameContext ctx)
-        {            
+        {
             if (ctx.isNewGame)
             {
                 SaveManager.Instance.Delete();
             }
-            var playerContext = SaveManager.Instance.GetPlayerData();
             gameWorld = MyResourcesManager.Instance.LoadAndInstantiate("Prefabs/GameWorld").GetComponent<GameWorld>();
             gameWorld.Init(ctx);
         }

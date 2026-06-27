@@ -1,0 +1,66 @@
+[
+  {
+    "Id": 1,
+    "LocationId": "guild",
+    "Name": "冒险者公会",
+    "Desc": "冒险者们聚集的地方",
+    "LocationType": 0,
+    "UnlockLevel": 1
+  },
+  {
+    "Id": 2,
+    "LocationId": "forest",
+    "Name": "黑暗森林",
+    "Desc": "危险的森林区域",
+    "LocationType": 1,
+    "UnlockLevel": 1
+  },
+  {
+    "Id": 3,
+    "LocationId": "quest_board",
+    "Name": "任务公告板",
+    "Desc": "查看可接取的任务",
+    "LocationType": 2,
+    "UnlockLevel": 1
+  },
+  {
+    "Id": 4,
+    "LocationId": "shop",
+    "Name": "杂货商店",
+    "Desc": "购买各种道具和装备",
+    "LocationType": 3,
+    "UnlockLevel": 3
+  },
+  {
+    "Id": 5,
+    "LocationId": "blacksmith",
+    "Name": "铁匠铺",
+    "Desc": "强化和改造装备",
+    "LocationType": 4,
+    "UnlockLevel": 5
+  },
+  {
+    "Id": 6,
+    "LocationId": "tavern",
+    "Name": "酒馆",
+    "Desc": "招募新的伙伴",
+    "LocationType": 5,
+    "UnlockLevel": 8
+  },
+  {
+    "Id": 7,
+    "LocationId": "cave",
+    "Name": "幽暗洞穴",
+    "Desc": "更强敌人出没的洞穴",
+    "LocationType": 1,
+    "UnlockLevel": 10
+  },
+  {
+    "Id": 8,
+    "LocationId": "volcano",
+    "Name": "火山深处",
+    "Desc": "极其危险的高级区域",
+    "LocationType": 1,
+    "UnlockLevel": 20
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "Id": 1,
+    "QuestId": "quest_first_hunt",
+    "ConditionType": 0,
+    "TargetId": "enemy_goblin",
+    "RequiredAmount": 5
+  },
+  {
+    "Id": 2,
+    "QuestId": "quest_collect_herbs",
+    "ConditionType": 1,
+    "TargetId": "mat_herb",
+    "RequiredAmount": 10
+  },
+  {
+    "Id": 3,
+    "QuestId": "quest_orc_threat",
+    "ConditionType": 0,
+    "TargetId": "enemy_orc",
+    "RequiredAmount": 3
+  },
+  {
+    "Id": 4,
+    "QuestId": "quest_cave_explore",
+    "ConditionType": 2,
+    "TargetId": "cave",
+    "RequiredAmount": 1
+  },
+  {
+    "Id": 5,
+    "QuestId": "quest_cave_explore",
+    "ConditionType": 0,
+    "TargetId": "enemy_skeleton",
+    "RequiredAmount": 10
+  }
+]

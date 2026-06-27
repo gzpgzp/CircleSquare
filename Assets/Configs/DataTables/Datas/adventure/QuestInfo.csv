@@ -1,0 +1,7 @@
+##var,Id,QuestId,Name,Desc,RecommendLevel,PrerequisiteQuestId
+##type,int,string,string,string,int,string
+##,任务ID,字符串ID,名称,描述,推荐等级,前置任务ID
+,1,quest_first_hunt,初次狩猎,到森林消灭几只哥布林吧,1,
+,2,quest_collect_herbs,采集药草,为商店收集一些治疗药草,2,quest_first_hunt
+,3,quest_orc_threat,兽人威胁,森林深处出现了兽人需要清除,5,quest_first_hunt
+,4,quest_cave_explore,洞穴探索,探索新发现的幽暗洞穴,10,quest_orc_threat

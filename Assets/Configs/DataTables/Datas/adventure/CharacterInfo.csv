@@ -1,0 +1,10 @@
+##var,Id,CharacterId,Name,CharacterClass,BaseHp,BaseAtk,BaseDef,BaseSpd,BaseCritRate,BaseCritDmg,HpPerLevel,AtkPerLevel,DefPerLevel,SpdPerLevel,BaseExpToLevel,ExpGrowthFactor,MaxLevel
+##type,int,string,string,int,float,float,float,float,float,float,float,float,float,float,int,float,int
+##,角色ID,字符串ID,名称,职业,基础血量,基础攻击,基础防御,攻速,暴击率,暴击倍率,每级血量,每级攻击,每级防御,每级速度,升级基础经验,经验系数,最大等级
+,1,hero_warrior,勇者战士,0,200,15,10,1.0,0.05,1.5,30,4,2,0,100,1.2,99
+,2,hero_mage,魔法师,1,120,25,5,0.8,0.1,2.0,15,6,1,0,100,1.2,99
+,3,hero_archer,弓箭手,2,150,20,7,1.2,0.15,1.8,20,5,1.5,0.01,100,1.2,99
+,4,hero_healer,治愈者,3,130,8,6,0.9,0.03,1.2,18,2,1.5,0,100,1.2,99
+,101,enemy_goblin,哥布林,0,80,8,3,0.8,0.02,1.5,10,2,1,0,50,1.1,50
+,102,enemy_orc,兽人,0,300,20,15,0.6,0.05,1.5,40,5,3,0,80,1.15,50
+,103,enemy_skeleton,骷髅法师,1,100,18,4,0.7,0.08,1.8,12,4,1,0,60,1.12,50

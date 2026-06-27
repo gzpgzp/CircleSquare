@@ -1,0 +1,8 @@
+##var,Id,QuestId,ConditionType,TargetId,RequiredAmount
+##type,int,string,int,string,int
+##,条件ID,所属任务,条件类型,目标ID,需求数量
+,1,quest_first_hunt,0,enemy_goblin,5
+,2,quest_collect_herbs,1,mat_herb,10
+,3,quest_orc_threat,0,enemy_orc,3
+,4,quest_cave_explore,2,cave,1
+,5,quest_cave_explore,0,enemy_skeleton,10
