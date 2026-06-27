@@ -1468,7 +1468,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 773846667}
-  - component: {fileID: 773846666}
   - component: {fileID: 773846668}
   - component: {fileID: 773846669}
   m_Layer: 8
@@ -1478,31 +1477,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &773846666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773846665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be8f9bca4a52e34a9d129b28a9ec73d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 888567327}
-  characterLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  longPressThreshold: 0.2
-  dragDeadZone: 5
-  rotationSpeed: 90
-  zoomSpeed: 1.5
-  minScale: 0.5
-  maxScale: 3
-  onCharacterShortClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &773846667
 Transform:
   m_ObjectHideFlags: 0
@@ -3017,10 +2991,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 888567327}
   locationLayer:
-    serializedVersion: 2
     m_Bits: 128
   longPressThreshold: 0.3
   dragDeadZone: 5
+  currentHover: {fileID: 0}
+  pressedLocation: {fileID: 0}
+  pressTime: 0
+  pressMousePos: {x: 0, y: 0, z: 0}
+  isDragging: 0
+  dragOffset: {x: 0, y: 0, z: 0}
+  dragPlaneZ: 0
 --- !u!1 &393253912224129140
 GameObject:
   m_ObjectHideFlags: 0
