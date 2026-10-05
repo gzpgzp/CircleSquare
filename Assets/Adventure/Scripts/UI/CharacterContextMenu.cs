@@ -30,6 +30,7 @@ namespace Adventure.UI
         [Header("按钮")]
         [SerializeField] private Button resetBtn;
         [SerializeField] private Button infoBtn;
+        [SerializeField] private Button exitBtn;
         [SerializeField] private Button closeBtn;
 
         private RectTransform rectTransform;
@@ -51,6 +52,9 @@ namespace Adventure.UI
             if (infoBtn != null)
                 infoBtn.onClick.AddListener(OnInfoClick);
 
+            if (exitBtn != null)
+                exitBtn.onClick.AddListener(OnExitClick);
+
             if (closeBtn != null)
                 closeBtn.onClick.AddListener(OnCloseClick);
         }
@@ -59,6 +63,7 @@ namespace Adventure.UI
         {
             if (resetBtn != null) resetBtn.onClick.RemoveAllListeners();
             if (infoBtn != null) infoBtn.onClick.RemoveAllListeners();
+            if (exitBtn != null) exitBtn.onClick.RemoveAllListeners();
             if (closeBtn != null) closeBtn.onClick.RemoveAllListeners();
             base.OnClose();
         }
@@ -113,6 +118,22 @@ namespace Adventure.UI
         private void OnCloseClick()
         {
             Close();
+        }
+
+        /// <summary>
+        /// 退出游戏按钮
+        /// </summary>
+        private void OnExitClick()
+        {
+            Debug.Log("[CharacterContextMenu] 退出游戏");
+            
+#if UNITY_EDITOR
+            // Editor 模式下停止播放
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            // Build 后退出应用
+            Application.Quit();
+#endif
         }
 
         /// <summary>

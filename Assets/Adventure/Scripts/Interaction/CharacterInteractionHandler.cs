@@ -22,6 +22,11 @@ namespace Adventure.Interaction
         private CharacterMover rotatingCharacter;
         private Vector2 lastMousePos;
 
+        // 拖拽状态
+        private CharacterMover draggingCharacter;
+        private CharacterAnimatorController draggingCharacterAnimator;
+        private CharacterStateMachine draggingCharacterStateMachine;
+
         protected override void Update()
         {
             base.Update();
@@ -60,6 +65,42 @@ namespace Adventure.Interaction
                 newPosition.z = character.transform.position.z; // 保持Z不变
                 character.TeleportTo(newPosition);
             }
+        }
+
+        protected override void OnDragStart(MonoBehaviour obj)
+        {
+            // 防止重复触发
+            if (draggingCharacter != null) return;
+
+            if (obj is CharacterMover character)
+            {
+                draggingCharacter = character;
+                draggingCharacterAnimator = character.GetComponent<CharacterAnimatorController>();
+                draggingCharacterStateMachine = character.GetComponent<CharacterStateMachine>();
+
+                // 通知动画系统
+                if (draggingCharacterAnimator != null)
+                    draggingCharacterAnimator.SetDragging(true);
+
+                // 通知状态机
+                if (draggingCharacterStateMachine != null)
+                    draggingCharacterStateMachine.SetDragging(true);
+            }
+        }
+
+        protected override void OnDragEnd(MonoBehaviour obj)
+        {
+            // 通知动画系统
+            if (draggingCharacterAnimator != null)
+                draggingCharacterAnimator.SetDragging(false);
+
+            // 通知状态机
+            if (draggingCharacterStateMachine != null)
+                draggingCharacterStateMachine.SetDragging(false);
+
+            draggingCharacter = null;
+            draggingCharacterAnimator = null;
+            draggingCharacterStateMachine = null;
         }
 
         protected override void OnRightClick(MonoBehaviour obj)
