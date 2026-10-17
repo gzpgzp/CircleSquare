@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BattleSystemCore 战斗配置唯一数据源（由战斗配置编辑器读写，也可手工编辑）。
+     缺省值（写出时省略）：relTick=0 durationTicks=1 maxStacks=1 isStun=false fxUseImpact=false 其余数值=0；origin/target等枚举属性总是写出 -->
+<BattleConfig>
+  <Buffs>
+    <Buff id="101" name="破甲" durationTicks="60">
+      <StatModifier statType="Def" modType="Flat" value="-25"/>
+    </Buff>
+    <Buff id="102" name="眩晕" durationTicks="25" isStun="true"/>
+    <Buff id="103" name="攻击强化" durationTicks="40" maxStacks="3">
+      <StatModifier statType="Atk" modType="Percent" value="2000"/>
+    </Buff>
+    <Buff id="104" name="三环" durationTicks="1073741823">
+      <AttackTrigger everyN="3">
+        <Track type="DoDamage" origin="Caster" target="Target"/>
+        <Track type="DoDamage" relTick="2" origin="Caster" target="Target"/>
+      </AttackTrigger>
+    </Buff>
+    <Buff id="105" name="回响" durationTicks="100">
+      <AttackTrigger everyN="2">
+        <Track type="ApplyBuff" origin="Caster" target="Target" buffId="101"/>
+        <Track type="DoDamage" relTick="3" origin="Caster" target="Target"/>
+      </AttackTrigger>
+    </Buff>
+  </Buffs>
+  <Projectiles>
+    <Projectile id="201" name="火球" speed="500" hitRadius="400" maxRange="6000">
+      <Track type="DoDamage" origin="Caster" target="Target"/>
+      <Track type="Knockup" origin="Caster" target="Target" vy0="600" gravity="200"/>
+      <Track type="TriggerFx" origin="Caster" target="Target" fxId="impact_ring" fxUseImpact="true"/>
+    </Projectile>
+  </Projectiles>
+  <Skills>
+    <Skill id="1" name="雷霆一击">
+      <Track type="TriggerFx" origin="Caster" target="Caster" durationTicks="8" fxId="cast_glow"/>
+      <Track type="ApplyBuff" origin="Caster" target="Target" buffId="101"/>
+      <Track type="ApplyBuff" origin="Caster" target="Target" buffId="102"/>
+      <Track type="AttackShape" origin="Caster" target="Target" shapeType="Sphere" shapeRadius="3000"/>
+      <Track type="Knockup" origin="Caster" target="Target" vy0="1200" gravity="300"/>
+    </Skill>
+    <Skill id="2" name="旋风斩">
+      <Track type="AttackShape" origin="Caster" target="Target" shapeType="Sector" shapeRadius="2500" shapeMinDot="5000"/>
+      <Track type="ApplyBuff" origin="Caster" target="Owner" buffId="103"/>
+      <Track type="AttackShape" relTick="8" origin="Caster" target="Target" shapeType="Sector" shapeRadius="2500" shapeMinDot="5000"/>
+    </Skill>
+    <Skill id="3" name="地裂">
+      <Track type="AttackShape" origin="Caster" target="Target" shapeType="Box" shapeHalfX="1500" shapeHalfZ="3500"/>
+      <Track type="DoDamage" relTick="6" origin="Caster" target="Target"/>
+    </Skill>
+    <Skill id="4" name="火球术">
+      <Track type="SpawnBullet" origin="Caster" target="Target" projectileId="201"/>
+    </Skill>
+  </Skills>
+</BattleConfig>

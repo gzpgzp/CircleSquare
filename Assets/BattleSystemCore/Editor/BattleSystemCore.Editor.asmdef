@@ -1,0 +1,26 @@
+{
+    "name": "BattleSystemCore.Editor",
+    "rootNamespace": "BattleSystemCore.Editor",
+    "references": [
+        "BattleSystemCore",
+        "BattleSystemCore.Unity",
+        "Sirenix.OdinInspector.Attributes",
+        "Sirenix.OdinInspector.Editor",
+        "Sirenix.Reflection.Editor",
+        "Sirenix.Serialization",
+        "Sirenix.Serialization.Config",
+        "Sirenix.Utilities",
+        "Sirenix.Utilities.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
